@@ -1,58 +1,40 @@
-[![Build Status](https://travis-ci.org/spark/firmware.svg?branch=develop)](https://travis-ci.org/spark/firmware)
+[![Build Status](https://travis-ci.org/zsup/firmware-rust.svg?branch=feature/rust)](https://travis-ci.org/zsup/firmware-rust)
 
-# Particle Firmware for the Core and Photon
+This repository is a starting point for incorporating Rust as a supported language for writing firmware applications on Particle devices (Core, Photon, and Electron).
 
-This is the main source code repository of the Particle firmware libraries.
+Once this repository has been built out and has some level of stability, it will be merged into the [Particle firmware repo](https://www.github.com/spark/firmware).
 
-# Getting Started
+## Getting started
 
-To get started building firmware locally, see [Getting Started](docs/gettingstarted.md).
+- Install the latest Nightly build of Rust - https://www.rust-lang.org/downloads.html
+- find the commit hash of the rust compiler:
+```
+$ rustc -v --version
+rustc 1.7.0-nightly (4405944b9 2016-01-11)
+binary: rustc
+commit-hash: 4405944b9414d9d39d98c988c420b77e93acba96
+commit-date: 2016-01-11
+host: x86_64-apple-darwin
+release: 1.7.0-nightly
+``` 
+- git clone https://github.com/rust-lang/rust
+- checkout the commit listed above:
+ - `git checkout <commit>`
+- in this firmware repo, rebuild the core library for your specific version of the compiler
+```
+cd build/arm/rust
+./build-core.sh <path-to-rust-repo>
+```
+- Build and flash the system modules (Photon/Electron)
+- Build the default app  (rust blinky) just as you normally would
+```
+cd main
+make PLATFORM=photon all program-dfu
+```
 
+## Project status
 
-# Resources
-
-- [Latest Release](http://github.com/spark/firmware/releases/)
-- [Changelog](CHANGELOG.md)
-
-
-## Build System
-
-- [Requirements/Dependencies](docs/dependencies.md)
-
-## Application Firmware Development
-
-- [Debugging support](docs/debugging.md)
-- [make command syntax](docs/build.md)
-- [Firmware API](http://docs.particle.io/photon/firmware/)
-
-## System Firmware Development
-
-- [System Flags](system/system-flags.md)
-- [Continuous Integration](ci/README.md)
-- [Module Descriptor linking and retrieval](dynalib/src/readme.md)
-- [Photon SoftAP Protocol](hal/src/photon/soft-ap.md)
-- [WiFi Tester Firmware](user/applications/wifitester/readme.md)
-- [Testing](user/tests/readme.md)
-- [API Changes Checklist](http://github.com/spark/firmware/wiki/Firmware-API-Changes-Checklist)
-- [Firmware Release Checklist](http://github.com/spark/firmware/wiki/Firmware-Release-Checklist)
-- [System describe message](https://github.com/spark/firmware/wiki/Module-descriptor-format)
-- [build test suite](build/test/readme.md)
-- [System Threading](system/system-threading.md)
-- [system versions and releases](system/system-versions.md)
-
-### Modules
-
-- Bootloader [overview](bootloader/README.md) and [internals](bootloader/documentation.md)
-- [Cloud Communications](communication/README.md)
-
-### Platforms
-
-- [Virtual Device](hal/src/gcc/readme.md)
-- [Starting a New Platform Hardware Abstraction Layer](hal/src/newhal/readme.md)
-- [Installing the USB Driver on Windows](misc/driver/windows/readme.md)
-
-
-
+This project is currently a proof of concept. We are seeking contributors and a maintainer to drive this project forward, with heavy support from the Particle team. If you are interested in joining as a contributors or taking on the role of maintainer, please [join the discussion on our forums.](http://community.particle.io/t/rust-on-particle-call-for-contributors/19090)
 
 ### CREDITS AND ATTRIBUTIONS
 
@@ -67,7 +49,7 @@ Unless stated elsewhere, file headers or otherwise, all files herein are license
 
 ### CONTRIBUTE
 
-Want to contribute to the Particle firmware project? Follow [this link](http://spark.github.io/#contributions) to find out how.
+If you are interested in joining as a contributors or taking on the role of maintainer, please [join the discussion on our forums.](http://community.particle.io/t/rust-on-particle-call-for-contributors/19090)
 
 ### CONNECT
 
